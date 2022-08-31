@@ -1,0 +1,62 @@
+THANK YOU FOR OPENING THIS FILE OUT OF CURIOSITY!
+
+
+I set up a first layout of the project in order to start to common bases.
+These are suggestions and can obviously be discussed all together.
+
+As advised by the subject I suggest that we do this project in cpp.
+If you are not at ease with cpp, don't worry neither am I, but it's simple and
+also a great occasion to learn it!
+
+GIT:
+When commiting always comment the commit with understandable comment.
+Use git norm if you want. I suggest the following:
+first line always in caps lock, ending with ":"
+
+Use of tag words: ADD or FEATURE/UPDATE/FIX/WIP
+Don't by shy! Use words so it's easier to know what the commit does.
+
+Don't hesitate to uncomment template line stating which files were modified.
+
+
+We must work on BRANCHES at all times, NEVER on master.
+Basic rule:
+	aweaver will have his branches start with aw/
+	omoundi will have her branches start with om/
+	jtaravel will have his branches start with jt/
+
+	examples:
+		aw/fix_parsing
+		aw/first_layout
+help : git checkout master;git checkout -b aw/my_new_branch
+
+When merging work, always rebase master on your branch first
+example :	git checkout master;git pull;
+			git checkout aw/my_branch;git rebase master
+			*testing everything here*
+
+If nothing broke after rebasing master merge squash on master.
+example:	git checkout master;git merge --squash aw/my_branch
+
+if you mess up something with git, it's fine, ask for help don't hide it!
+
+
+Directory tree :
+|\ft_shmup
+|	.git
+|	.gitignore
+|	Makefile
+||\includes
+||	this stores all the .hpp files needed for the project
+||\Sources
+|||\core
+|||	main.cpp and all core files needed for this project
+|||\errors
+|||	my_example_error_file.cpp //and all the files needed to deal with errors
+|||	//this will probably stay quite empty
+|||\utils
+|||	this directory can store all utils functions files, don't forget that we
+|||	are not limited with functions so use all libs you need!
+|||\parsing
+|||	my_example_parsing_file.cpp (you get it)
+
