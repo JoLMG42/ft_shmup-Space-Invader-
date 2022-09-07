@@ -6,7 +6,7 @@
 /*   By: omoudni <omoudni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 22:09:33 by aweaver           #+#    #+#             */
-/*   Updated: 2022/08/31 21:15:26 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:00:48 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,13 @@ int	ft_check_cheat_code(int key, t_data *game)
 	return (0);
 }
 
+int	ft_check_clear_code(int key)
+{
+	if (key == 360)
+		return (1);
+	return (0);
+}
+
 int	main(void)
 {
 	void		*window;
@@ -236,6 +243,11 @@ int	main(void)
 		{
 			game.cheat = 1;
 			g_data.cheat = 1;
+		}
+		if (ft_check_clear_code(key))
+		{
+			g_pusher.clear();
+			g_missiles.clear();
 		}
 		if (game.cheat == 1)
 			;
