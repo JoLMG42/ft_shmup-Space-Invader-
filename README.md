@@ -1,4 +1,4 @@
-                                                           ft_shmup
+                                                       ft_shmup
 This a "Shoot 'em up" game based on Space Invader.
 
 The game supports a normal/single mode, a hardcore mode and a multiplayer mode.
