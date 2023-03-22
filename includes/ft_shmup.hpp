@@ -6,7 +6,7 @@
 /*   By: omoudni <omoudni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 09:56:46 by aweaver           #+#    #+#             */
-/*   Updated: 2022/09/07 18:33:36 by jtaravel         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:59:15 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ extern std::vector<Patrol> g_patrol;
 #define YELLOW_STAR 2
 #define METEOR 3
 #define LIFE 4
+#define CYAN 6
 
 #ifndef HP
 
@@ -112,7 +113,7 @@ extern std::vector<Patrol> g_patrol;
 
 #endif
 
-#define PUSHER_POINT 300
+#define PUSHER_POINT 30
 #define PATROL_POINT 50
 #define BULLET_POINT 10
 

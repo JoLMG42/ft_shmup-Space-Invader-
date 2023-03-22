@@ -6,7 +6,7 @@
 /*   By: omoudni <omoudni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 22:09:33 by aweaver           #+#    #+#             */
-/*   Updated: 2022/09/07 19:00:48 by jtaravel         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:01:15 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,21 @@ int	ft_turn(void *&window, int key, t_data *game)
 				game->score += PUSHER_POINT;
 				game->frags += 1;
 			}
+			if (g_weapon[i].get_Y() == g_pusher[j].get_Y() && g_pusher[j].get_X() == g_weapon[i].get_X() + 1)
+			{
+				g_weapon.erase(g_weapon.begin() + j);
+				g_pusher.erase(g_pusher.begin() + j);
+				game->score += PUSHER_POINT;
+				game->frags += 1;
+			}
+			if (g_weapon[i].get_Y() == g_pusher[j].get_Y() && g_pusher[j].get_X() == g_weapon[i].get_X() - 1)
+			{
+				g_weapon.erase(g_weapon.begin() + j);
+				g_pusher.erase(g_pusher.begin() + j);
+				game->score += PUSHER_POINT;
+				game->frags += 1;
+			}
+			
 		}
 		for (size_t j = 0; j < g_patrol.size(); j++)
 		{
@@ -121,11 +136,33 @@ int	ft_turn(void *&window, int key, t_data *game)
 			game->hp--;
 			g_missiles.erase(g_missiles.begin() + i);
 		}
+		if (g_allies[0].get_Y() == g_missiles[i].get_Y() && g_missiles[i].get_X() + 1 == g_allies[0].get_X() && game->cheat == 0 && g_pusher[i].get_boss())
+		{
+			game->hp--;
+			g_missiles.erase(g_missiles.begin() + i);
+		}
+		if (g_allies[0].get_Y() == g_missiles[i].get_Y() && g_missiles[i].get_X() - 1 == g_allies[0].get_X() && game->cheat == 0 && g_pusher[i].get_boss())
+		{
+			game->hp--;
+			g_missiles.erase(g_missiles.begin() + i);
+		}
 		if (game->hp <= 0)
 			return (1);
 		for (size_t j = 0; j < g_weapon.size(); j++)
 		{
 			if (g_weapon[j].get_Y() == g_missiles[i].get_Y() && g_missiles[i].get_X() == g_weapon[j].get_X())
+			{
+				g_weapon.erase(g_weapon.begin() + j);
+				g_missiles.erase(g_missiles.begin() + i);
+				game->score += BULLET_POINT;
+			}
+			if ((g_weapon[j].get_Y() == g_missiles[i].get_Y() && g_missiles[i].get_X() == g_weapon[j].get_X() + 1))
+			{
+				g_weapon.erase(g_weapon.begin() + j);
+				g_missiles.erase(g_missiles.begin() + i);
+				game->score += BULLET_POINT;
+			}
+			if ((g_weapon[j].get_Y() == g_missiles[i].get_Y() && g_missiles[i].get_X() == g_weapon[j].get_X() - 1))
 			{
 				g_weapon.erase(g_weapon.begin() + j);
 				g_missiles.erase(g_missiles.begin() + i);
@@ -168,7 +205,6 @@ void	ft_aff_ath(void *window, t_data game)
 		mvwaddch((WINDOW *)window, 1, w, str[j] | COLOR_PAIR(RED_STAR) | A_BOLD);
 		w++;
 	}
-
 }
 
 int	ft_check_cheat_code(int key, t_data *game)
@@ -218,6 +254,7 @@ int	main(void)
 	init_pair(3, COLOR_BLUE, COLOR_BLACK);
 	init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(5, COLOR_GREEN, COLOR_BLACK);
+	init_pair(6, COLOR_CYAN, COLOR_BLACK);
 
 	Objects objs(STAR);
 	game.loop = 0;
@@ -261,7 +298,7 @@ int	main(void)
 			lost = 1;
 			break;
 		}
-		if (game.score > 5000)
+		if (game.score >= 5000)
 			break;
 		ft_aff_ath(window, game);
 		key = getch();
@@ -270,9 +307,9 @@ int	main(void)
 		wrefresh((WINDOW *)window);
 		std::this_thread::sleep_for(std::chrono::duration<double, std::ratio<1,60>>(1));
 		game.loop++;
-		if (game.score >= 250)
+		if (game.score >= 500)
 			game.phase = 2;
-		if (game.score >= 750)
+		if (game.score >= 2500)
 		{
 			game.mode = 1;
 			game.phase = 3;

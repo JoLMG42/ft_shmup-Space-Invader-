@@ -6,7 +6,7 @@
 /*   By: omoudni <omoudni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:04:04 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/08/31 21:13:35 by jtaravel         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:15:47 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void	SpaceShip::action(int input, void *&window)
 	if (input == KEY_DOWN || input == KEY_UP || input == KEY_LEFT
 		|| input == KEY_RIGHT)
 		this->movement(input);
-	if (input == KEY_SPACE && _ammos > 0)
+	if (input == 48 && _ammos > 0)
 	{
 		set_ammos(get_ammos() - 1);
 		shoot();

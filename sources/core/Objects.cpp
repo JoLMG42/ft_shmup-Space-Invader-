@@ -6,7 +6,7 @@
 /*   By: jtaravel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:37:16 by jtaravel          #+#    #+#             */
-/*   Updated: 2022/08/28 22:48:26 by jtaravel         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:11:21 by jtaravel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ Objects::Objects(int type)
 	{
 		_s = '0';
 		_c = METEOR;
+	}
+	else if (random >= 70 && random <= 80)
+	{
+		_s = '*';
+		_c = CYAN;
 	}
 	else if (type == LIFE)
 	{
